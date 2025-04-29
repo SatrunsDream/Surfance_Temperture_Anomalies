@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Project 2 Report</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --deep-teal: #004466;
+        --coral-red: #e24a33;
+        --leaf-green: #2a9d8f;
+        --sky-blue: #a8dadc;
+        --dark-gray: rgba(0, 0, 0, 0.9);
+        --muted-gray: rgba(0, 0, 0, 0.6);
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Rubik', sans-serif;
+        margin: 0;
+        background: url('clouds-light.svg') no-repeat center center fixed;
+        background-size: cover;
+      }
+      header {
+        background: var(--deep-teal);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      header h1 { margin: 0; font-size: 1.5rem; }
+      header img { width: 30px; height: 30px; }
+      main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .panel {
+        background: var(--sky-blue);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+      }
+      .panel:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      }
+      .panel.for { border-top: 5px solid var(--coral-red); }
+      .panel.against { border-top: 5px solid var(--leaf-green); }
+      .panel h2 { margin-top: 0; }
+      .proposition { font-weight: bold; margin-bottom: 1.5rem; }
+      .viz { 
+        width: 100%; 
+        height: 600px; 
+        margin: 1rem 0;
+      }
+      figure { margin: 1.5rem 0; text-align: center; }
+      figcaption { font-size: 0.9rem; color: var(--muted-gray); }
+      footer {
+        background: var(--sky-blue);
+        text-align: center;
+        padding: 0.5rem;
+        font-variant: small-caps;
+        color: var(--muted-gray);
+      }
+      @media (max-width: 768px) {
+        .viz { height: 400px; }
+        main { padding: 1rem; }
+        .panel { padding: 1rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="iceberg-icon.png" alt="Melting Iceberg Icon" />
+      <h1>Climate Change Visualization</h1>
+    </header>
+
+    <main>
+      <!-- TRUTHFUL: Map -->
+      <section class="panel for">
+        <h2>FOR: Arctic Crisis</h2>
+        <p class="proposition">
+          Proposition: Polar temperature anomalies are off the charts hitting all time highs.
+        </p>
+
+        <div>
+          <h3>Design Decisions and Rationale</h3>
+          <ul>
+            <li><strong>Color Amplification of Crisis:</strong> A red-dominant RdBu_r color scale visually reinforces the perception of heat and danger. The blue-to-red gradient is reversed and clipped between –2°C and +2°C, ensuring the red tones dominate even moderate anomalies. Red is a culturally embedded cue for alarm, urgency, and danger, which primes the viewer to feel concern and fear.</li>
+            <li><strong>Temporal Animation Evokes Escalation:</strong> By using an animated slider to show changes from 1961 to 2024, the user sees anomalies unfold progressively. This adds an emotional sense of momentum, reinforcing the idea of an accelerating crisis. It also subtly guides the viewer’s focus to end on the peak year (2024), leaving the impression of a dangerously heating planet.</li>
+            <li><strong>Geographic Scope and Equal Visual Weight:</strong> The map uses a natural earth projection to display all countries equally. Unlike projections that emphasize industrialized nations, this framing gives equal visual emphasis to small, vulnerable countries, particularly in Africa and Oceania, enhancing the perceived global scale of the crisis. It evokes planetary urgency and shared consequence.</li>
+          </ul>
+        </div>
+
+        <!-- embed the map HTML -->
+        <iframe
+          src="temperature_anomalies_map.html"
+          width="100%"
+          height="600"
+          frameborder="0"
+        ></iframe>
+
+        <figure>
+          <figcaption>
+            <strong>Figure 1:</strong> Annual surface temperature anomalies by country (1961–2024).
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- DECEPTIVE: Line -->
+      <section class="panel against">
+        <h2>AGAINST: Manageable Rise</h2>
+        <p class="proposition">
+          Proposition: Global temperature rise remains within manageable limits across time.
+        </p>
+
+        <div>
+          <h3>Soft Color Palette to Dampen Concern</h3>
+          <ul>
+            <li><strong>Calming Blue Palette:</strong> A calming blue line on a light gray-blue background conveys neutrality and stability. There are no alarming colors (e.g., red), which lessens the emotional impact. This is a common tactic for minimizing perceived risk: using understated tones to make a trend appear less dramatic than it is.</li>
+            <li><strong>Framing with Y-Axis Range Compression:</strong> The Y-axis is fixed from –2°C to +2°C, which compresses the visible vertical change. This makes the 2°C rise seem small and gradual. By including the negative range (despite data never falling below 0°C), the visual scale artificially flattens the trend, downplaying the steepness and urgency of the rise.</li>
+            <li><strong>Reassuring Title Framing and Zero-Line Anchoring:</strong> The title “Steady Global Temperature Trends Show Manageable Rise” pre-frames the viewer to interpret the data as non-alarming. The centered, bold 0°C baseline also reinforces that most of the line stays “above the danger threshold,” which subtly implies that humanity is still within a safe climate zone — regardless of trend slope.</li>
+          </ul>
+        </div>
+
+        <!-- embed the line‐chart HTML -->
+        <iframe
+          src="temperature_anomalies_rise.html"
+          width="100%"
+          height="600"
+          frameborder="0"
+        ></iframe>
+
+        <figure>
+          <figcaption>
+            <strong>Figure 2:</strong> Steady global temperature trends show "manageable" rise.
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <footer>
+      Data Source: IMF Climate Data Portal
+    </footer>
+
+    <section class="panel reflection">
+      <h2>Reflection</h2>
+      <p>
+        This project highlights the power of data visualization in shaping perceptions and narratives. By carefully selecting design elements such as color, scale, and framing, we can evoke specific emotional responses and guide interpretation. However, this also underscores the ethical responsibility of visual storytellers to present data truthfully and transparently. 
+      </p>
+      <p>
+        The contrasting approaches in this report amplifying urgency (For) versus dampening concern (Against) demonstrate how the same data can be framed to support different narratives. This duality serves as a reminder to critically evaluate visualizations and question the intent behind their design. As we face global challenges like climate change, the role of ethical data communication becomes ever more crucial in fostering informed decision-making and collective action.
+      </p>
+    </section>
+  </body>
+</html>
